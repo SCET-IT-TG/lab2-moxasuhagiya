@@ -1,0 +1,59 @@
+//exe-1 Create companyDB.Insert 5 documents into employees with fields:name (String),department (String: HR, IT, Sales),0salary (Number),age (Number)
+
+db = db.getSiblingDB("companyDB");
+
+db.employees.insertMany([
+{name:"Moxa Suhagiya",
+department:"HR",
+salary:25000,
+age:20},
+{name:"Prit Khunt",
+department:"IT",
+salary:50000,
+age:18},
+{name:"Deep Khunt",
+department:"Sales",
+salary:55000,
+age:25},
+{name:"Urvisha Khunt",
+department:"HR",
+salary:25000
+,age:30},
+{name:"Janavi Khunt",
+department:"IT",
+salary:5000,
+age:30},
+{name:"Rahul",
+department:"IT",
+salary:5000,
+age:50}])
+
+
+//exe-2 Find all employees belonging to the "IT" department.Find the employee with the name "Rahul".
+
+db.employees.find({department:"IT"})
+
+db.employees.find({name:"Rahul"})
+
+
+//exe-3 Display all employees using pretty().Find all unique departments using distinct().
+
+db.employees.find().pretty()
+
+db.employees.distinct("department")
+
+//exe-4 Find employees with a salary greater than 50000.Find employees with a salary less than 30000.
+
+db.employees.find({salary:{$gt:50000}})
+
+db.employees.find({salary:{$lt:30000}})
+
+//exe-5 Find employees whose age is greater than or equal to 30.Find employees whose age is less than or equal to 25.
+
+db.employees.find({age:{$gte:30}})
+
+db.employees.find({age:{$lte:25}})
+
+//exe-6 Find employees with salary between 40000 and 80000 (inclusive).
+
+db.employees.find({salary:{$gt:40000,$lte:80000}})
